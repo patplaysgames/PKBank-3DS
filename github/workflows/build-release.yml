@@ -1,0 +1,49 @@
+name: Build PkBank 3DS (.3dsx + .cia)
+
+on:
+  push:
+    branches: [ main ]
+    tags: [ 'v*' ]
+  workflow_dispatch:
+
+jobs:
+  build-n3ds:
+    runs-on: ubuntu-latest
+    container:
+      image: devkitpro/devkitarm:latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@v4
+
+      - name: Install bannertool, makerom & python3
+        run: |
+          apt-get update && apt-get install -y --no-install-recommends curl unzip python3 ca-certificates
+          curl -fsSL https://github.com/Steveice10/bannertool/releases/latest/download/bannertool.zip -o /tmp/bannertool.zip
+          unzip -o /tmp/bannertool.zip -d /tmp/bannertool
+          install -m 755 /tmp/bannertool/linux-x86_64/bannertool /usr/local/bin/bannertool
+          curl -fsSL https://github.com/3DSGuy/Project_CTR/releases/download/makerom-v0.18.4/makerom-v0.18.4-ubuntu_x86_64.zip -o /tmp/makerom.zip
+          unzip -o /tmp/makerom.zip -d /tmp/makerom
+          install -m 755 /tmp/makerom/makerom /usr/local/bin/makerom
+
+      - name: Build .3dsx and .cia Release
+        run: make release
+
+      - name: Upload Build Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: PkBank3DS-Release
+          path: |
+            release/PkBank3DS.3dsx
+            release/PkBank3DS.smdh
+            release/PkBank3DS.cia
+            release/SHA256SUMS.txt
+
+      - name: Publish GitHub Release on Tag
+        if: startsWith(github.ref, 'refs/tags/v')
+        uses: softprops/action-gh-release@v2
+        with:
+          files: |
+            release/PkBank3DS.3dsx
+            release/PkBank3DS.smdh
+            release/PkBank3DS.cia
+            release/SHA256SUMS.txt
