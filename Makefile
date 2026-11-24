@@ -42,6 +42,7 @@ CFLAGS          := -g -Wall -Wextra -O2 -mword-relocations -ffunction-sections $
 CXXFLAGS        := $(CFLAGS) -fno-rtti -fno-exceptions -std=gnu++17
 ASFLAGS         := -g $(ARCH)
 LDFLAGS         := -specs=3dsx.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
+export LD       := $(CXX)
 
 LIBS            := -lcitro2d -lcitro3d -lctru -lm -lz
 LIBDIRS         := $(CTRULIB) $(PORTLIBS)
