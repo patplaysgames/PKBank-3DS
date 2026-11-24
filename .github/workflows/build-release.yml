@@ -18,7 +18,7 @@ jobs:
       - name: Install bannertool, makerom & python3
         run: |
           apt-get update && apt-get install -y --no-install-recommends curl unzip python3 ca-certificates
-          curl -fsSL https://github.com/Steveice10/bannertool/releases/latest/download/bannertool.zip -o /tmp/bannertool.zip
+          curl -fsSL https://github.com/Epicpkmn11/bannertool/releases/download/v1.2.2/bannertool.zip -o /tmp/bannertool.zip
           unzip -o /tmp/bannertool.zip -d /tmp/bannertool
           install -m 755 /tmp/bannertool/linux-x86_64/bannertool /usr/local/bin/bannertool
           curl -fsSL https://github.com/3DSGuy/Project_CTR/releases/download/makerom-v0.18.4/makerom-v0.18.4-ubuntu_x86_64.zip -o /tmp/makerom.zip
