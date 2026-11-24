@@ -41,7 +41,7 @@ ASFLAGS         := -g $(ARCH)
 LDFLAGS         := -specs=3dsx.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
 
 LIBS            := -lcitro2d -lcitro3d -lctru -lm -lz
-LIBDIRS         := $(CTRULIB)
+LIBDIRS         := $(CTRULIB) $(PORTLIBS)
 
 ifneq ($(BUILD),$(notdir $(CURDIR)))
 
