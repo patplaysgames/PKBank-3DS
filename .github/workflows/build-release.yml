@@ -28,7 +28,7 @@ jobs:
       - name: Install 3DS development libraries
         run: |
           dkp-pacman -Sy --noconfirm
-          dkp-pacman -S 3ds-dev libctru citro2d citro3d --needed --noconfirm
+          dkp-pacman -S 3ds-dev libctru citro2d citro3d 3ds-zlib --needed --noconfirm
        
       - name: Build .3dsx and .cia Release
         run: make release
