@@ -9,6 +9,9 @@ endif
 TOPDIR ?= $(CURDIR)
 include $(DEVKITARM)/3ds_rules
 
+DEVKITPRO       ?= /opt/devkitpro
+CTRULIB         := $(DEVKITPRO)/libctru
+PORTLIBS        := $(DEVKITPRO)/portlibs/3ds	
 #---------------------------------------------------------------------------------
 # Release Targets:
 #   make          -> builds PkBank3DS.3dsx + PkBank3DS.smdh (Homebrew Launcher)
@@ -35,7 +38,7 @@ APP_AUDIO       := $(CURDIR)/$(META)/audio.wav
 APP_RSF         := $(CURDIR)/$(META)/PkBank3DS.rsf
 
 ARCH            := -march=armv6k -mtune=mpcore -mfloat-abi=hard -mtp=soft
-CFLAGS          := -g -Wall -Wextra -O2 -mword-relocations -ffunction-sections $(ARCH) -D__3DS__
+CFLAGS          := -g -Wall -Wextra -O2 -mword-relocations -ffunction-sections $(ARCH) -D__3DS__ $(INCLUDE)
 CXXFLAGS        := $(CFLAGS) -fno-rtti -fno-exceptions -std=gnu++17
 ASFLAGS         := -g $(ARCH)
 LDFLAGS         := -specs=3dsx.specs -g $(ARCH) -Wl,-Map,$(notdir $*.map)
