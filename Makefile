@@ -88,7 +88,7 @@ cia: all
 release: cia
 	@mkdir -p $(RELEASE_DIR)
 	@cp $(TARGET).3dsx $(TARGET).cia $(RELEASE_DIR)/
-    @cp $(BUILD)/icon.icn $(RELEASE_DIR)/$(TARGET).smdh
+	@cp $(BUILD)/icon.icn $(RELEASE_DIR)/$(TARGET).smdh
 	@cd $(RELEASE_DIR) && sha256sum $(TARGET).3dsx $(TARGET).smdh $(TARGET).cia > SHA256SUMS.txt
 	@echo "Final release artifacts ready in $(RELEASE_DIR)/"
 
