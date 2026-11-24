@@ -33,7 +33,7 @@ AccessControlInfo:
     - TwlCardBackup
     - TwlNandData
     - Boss
-    - SdmcRw
+    - DirectSdmc
     - SaveDataMove
   MemoryType              : Application
   SystemMode              : 64MB
