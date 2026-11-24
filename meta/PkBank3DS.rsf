@@ -33,7 +33,6 @@ AccessControlInfo:
     - TwlCardBackup
     - TwlNandData
     - Boss
-    - DirectSdmc
     - SaveDataMove
   MemoryType              : Application
   SystemMode              : 64MB
@@ -66,7 +65,6 @@ AccessControlInfo:
     - hid:USER
     - ndm:u
     - ptm:u
-    - pxidev:sp
   SystemCallAccess:
     ControlMemory: 1
     QueryMemory: 2
