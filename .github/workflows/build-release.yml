@@ -25,9 +25,9 @@ jobs:
           unzip -o /tmp/makerom.zip -d /tmp/makerom
           install -m 755 /tmp/makerom/makerom /usr/local/bin/makerom
 
-       - name: Install 3DS development libraries
+      - name: Install 3DS development libraries
         run: |
-          kp-pacman -Sy --noconfirm
+          dkp-pacman -Sy --noconfirm
           dkp-pacman -S 3ds-dev --needed --noconfirm
        
       - name: Build .3dsx and .cia Release
